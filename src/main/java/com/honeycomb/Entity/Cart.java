@@ -16,5 +16,5 @@ public class Cart {
     @Id
     private String uid;
 
-    private List<String> cartItems;
+    private Map<String, Double> cartItems;
 }
