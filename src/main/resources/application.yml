@@ -1,0 +1,11 @@
+server:
+  port: 4444
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/hcomb
+    username: root
+    password: toor
+  jpa:
+    hibernate:
+      ddl-auto: update
