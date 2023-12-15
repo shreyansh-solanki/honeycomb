@@ -9,12 +9,12 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "physical_addresses")
-public class PhysicalAddress {
+@Table(name = "addresses")
+public class Address {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long addid;
+    private String id;
 
     @ManyToOne
     @JoinColumn(name = "uid")
@@ -42,19 +42,10 @@ public class PhysicalAddress {
     private String country;
 
     @Column(nullable = false)
-    private String postalCode;
-
-    @Column(nullable = false)
-    private boolean isPrimary;
+    private Integer postalCode;
 
     @Column(nullable = false)
     private boolean isActive;
-
-    @Column(nullable = false)
-    private boolean isShipping;
-
-    @Column(nullable = false)
-    private boolean isBilling;
 
     // Getters, setters, and other essential methods
 

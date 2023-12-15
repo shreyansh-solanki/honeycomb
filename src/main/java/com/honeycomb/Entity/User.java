@@ -18,7 +18,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long uid;
+    private String id;
 
     @Column(nullable = false)
     private String fname;
@@ -30,7 +30,7 @@ public class User {
     private String email;
 
     @Column(nullable = false)
-    private boolean emailVerified;
+    private boolean isVerified;
 
     // Use a secure hashing algorithm instead of storing plain password
     // Consider using a dedicated library like BCryptPasswordEncoder
@@ -38,7 +38,7 @@ public class User {
     // private String password;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "password_id")
+    @JoinColumn(name = "pid")
     private Password password;
 
     @Column(nullable = false)

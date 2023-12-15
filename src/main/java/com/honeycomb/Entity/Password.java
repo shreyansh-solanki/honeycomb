@@ -16,7 +16,7 @@ public class Password {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long passId;
+    private String id;
 
     @OneToOne(mappedBy = "password")
     private User user;
@@ -25,14 +25,14 @@ public class Password {
     @Column(nullable = false)
     private String hashedPassword;
 
-    @Column(nullable = false)
-    private boolean resetInProgress;
-
-    @Column(nullable = true)
-    private Instant resetExpires;
-
-    @Column(nullable = true)
-    private String resetCode;
+//    @Column(nullable = false)
+//    private boolean resetInProgress;
+//
+//    @Column(nullable = true)
+//    private Instant resetExpires;
+//
+//    @Column(nullable = true)
+//    private String resetCode;
 
     @Column(nullable = false)
     private boolean isActive;
