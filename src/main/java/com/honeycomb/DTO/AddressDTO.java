@@ -12,7 +12,6 @@ public class AddressDTO {
 
     private String id;
 
-    @ManyToOne
     @JsonIgnore
     private User user;
 
