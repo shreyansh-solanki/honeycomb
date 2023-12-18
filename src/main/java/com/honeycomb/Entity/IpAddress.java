@@ -16,7 +16,7 @@ public class IpAddress {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long ipid;
+    private String id;
 
     @Column(nullable = false)
     private String ip1;

@@ -16,7 +16,7 @@ public class SiteVisits {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long svid;
+    private String id;
 
     @ManyToOne
     @JoinColumn(name = "uid")
