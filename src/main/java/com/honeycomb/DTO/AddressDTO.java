@@ -2,7 +2,6 @@ package com.honeycomb.DTO;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.honeycomb.Entity.User;
-import jakarta.persistence.ManyToOne;
 import lombok.Getter;
 import lombok.Setter;
 

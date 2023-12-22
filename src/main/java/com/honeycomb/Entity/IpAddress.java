@@ -16,7 +16,11 @@ public class IpAddress {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+<<<<<<< HEAD
     private String id;
+=======
+    private Long id;
+>>>>>>> 7010b8e446a10ee628e1279523185d36e7cef3e9
 
     @Column(nullable = false)
     private String ip1;
