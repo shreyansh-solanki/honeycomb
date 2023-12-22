@@ -9,7 +9,7 @@ import java.time.Instant;
 @Setter
 public class LoginHistoryDTO {
 
-    private String id;
+    private Long id;
 
     private UserDTO user;
 

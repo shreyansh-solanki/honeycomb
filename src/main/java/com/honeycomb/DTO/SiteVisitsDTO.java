@@ -1,9 +1,7 @@
 package com.honeycomb.DTO;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.honeycomb.Entity.IpAddress;
 import com.honeycomb.Entity.User;
-import jakarta.persistence.ManyToOne;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,7 +11,7 @@ import java.time.Instant;
 @Setter
 public class SiteVisitsDTO {
 
-    private String id;
+    private Long id;
 
 //    @JsonIgnore
     private User user;

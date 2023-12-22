@@ -1,18 +1,19 @@
 package com.honeycomb.DTO;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.OneToOne;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.time.Instant;
 
 @Getter
 @Setter
 public class PasswordResetDTO {
 
-    private String id;
-    private String resetPasswordLink;
-    private Integer resetCode;
+    private Long id;
 
-    @JsonIgnore
+    private String resetToken;
+
+    private Instant requestTime;
+
     private PasswordDTO password;
 }

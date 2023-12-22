@@ -9,7 +9,7 @@ import java.time.Instant;
 @Setter
 public class IpAddressDTO {
 
-    private String id;
+    private Long id;
     private String ip1;
     private String ip2;
     private String ip3;
