@@ -16,14 +16,18 @@ public class SiteVisits {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+<<<<<<< HEAD
     private String id;
+=======
+    private Long id;
+>>>>>>> 7010b8e446a10ee628e1279523185d36e7cef3e9
 
     @ManyToOne
-    @JoinColumn(name = "uid")
+    @JoinColumn(name = "user_id")
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "ipid")
+    @JoinColumn(name = "ip_id")
     private IpAddress ipAddress;
 
     @Column(nullable = false)
