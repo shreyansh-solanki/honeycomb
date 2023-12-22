@@ -18,11 +18,8 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-<<<<<<< HEAD
-    private String id;
-=======
+
     private Long id;
->>>>>>> 7010b8e446a10ee628e1279523185d36e7cef3e9
 
     @Column(nullable = false)
     private String fname;
@@ -33,29 +30,20 @@ public class User {
     @Column(unique = true, nullable = false)
     private String email;
 
-<<<<<<< HEAD
-    @Column(nullable = false)
-    private boolean isVerified;
-
     // Use a secure hashing algorithm instead of storing plain password
     // Consider using a dedicated library like BCryptPasswordEncoder
     // @Column(nullable = false)
     // private String password;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "pid")
-    private Password password;
-
     @Column(nullable = false)
     @ManyToMany(cascade = CascadeType.ALL)
     private IpAddress ipAddress;
-=======
+
     @Column(unique = true, nullable = false)
     private Long primaryPhone;
 
     @Column(nullable = false, columnDefinition = "boolean default false")
     private boolean isVerified;
->>>>>>> 7010b8e446a10ee628e1279523185d36e7cef3e9
 
     @Column(nullable = false)
     private Instant createdAt;
