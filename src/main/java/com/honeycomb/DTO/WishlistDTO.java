@@ -7,11 +7,10 @@ import java.util.List;
 
 @Getter
 @Setter
-public class CartDTO {
-
+public class WishlistDTO {
     private Long id;
 
     private UserDTO user;
 
-    private List<CartItemDTO> cartItems;
+    private List<WishlistItemDTO> wishlistItems;
 }

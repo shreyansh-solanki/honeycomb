@@ -9,10 +9,9 @@ import lombok.Setter;
 @Setter
 public class AddressDTO {
 
-    private String id;
+    private Long id;
 
-    @JsonIgnore
-    private User user;
+    private UserDTO user;
 
     private String houseNo;
     private String street;
@@ -21,7 +20,7 @@ public class AddressDTO {
     private String city;
     private String state;
     private String country;
-    private String postalCode;
+    private Integer postalCode;
     private boolean isActive;
 
     // Getters, setters, and other essential methods
