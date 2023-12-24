@@ -8,7 +8,8 @@ import java.util.List;
 @Getter
 @Setter
 public class WishlistDTO {
-    private Long id;
+
+    private String id;
 
     private UserDTO user;
 

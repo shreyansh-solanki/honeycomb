@@ -1,16 +1,10 @@
 package com.honeycomb.DTO;
 
-import com.honeycomb.Entity.Address;
-import com.honeycomb.Entity.Cart;
-import com.honeycomb.Entity.Order;
-import com.honeycomb.Entity.Wishlist;
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.OneToOne;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.time.Instant;
-import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -31,16 +25,22 @@ public class UserDTO {
 
     private Instant createdAt;
 
+//    @JsonIgnore
     private PasswordDTO password;
 
-    private List<Address> addresses;
+//    @JsonIgnore
+    private List<AddressDTO> addresses;
 
+//    @JsonIgnore
     private List<LoginHistoryDTO> loginHistories;
 
+//    @JsonIgnore
     private List<OrderDTO> orders;
 
+//    @JsonIgnore
     private WishlistDTO wishlist;
 
+//    @JsonIgnore
     private CartDTO cart;
 
     // Getters, setters, and other essential methods

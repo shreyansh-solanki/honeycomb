@@ -5,7 +5,8 @@ import com.honeycomb.DTO.UserDTO;
 
 public interface UserService {
 
-    void register(UserDTO userDTO);
+    UserDTO register(UserDTO userDTO);
+    UserDTO getUserById(Long userId);
     UserDTO update(UserDTO userDTO);
-    UserDTO delete(UserDTO userDTO);
+    void delete(Long userId);
 }

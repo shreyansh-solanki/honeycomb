@@ -19,9 +19,9 @@ public class OrderDTO {
 
     private Double total;
 
-    private User user;
+    private UserDTO user;
 
-    private List<OrderItem> orderItems;
+    private List<OrderItemDTO> orderItems;
 
-    private List<OrderStatus> orderStatuses;
+    private List<OrderStatusDTO> orderStatuses;
 }

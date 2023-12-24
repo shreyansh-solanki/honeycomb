@@ -1,5 +1,6 @@
 package com.honeycomb.Entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -28,8 +29,8 @@ public class Password {
     @Column(nullable = false)
     private Instant createdAt;
 
-    @OneToOne
-    @JoinColumn(name = "user_id", unique = true)
+    @OneToOne(mappedBy = "password", cascade = CascadeType.ALL, orphanRemoval = true)
+//    @JsonManagedReference
     private User user;
 
     @OneToOne(mappedBy = "password", cascade = CascadeType.ALL)

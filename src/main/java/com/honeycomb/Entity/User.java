@@ -1,9 +1,15 @@
 package com.honeycomb.Entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.SourceType;
 
 import java.time.Instant;
 import java.util.ArrayList;
@@ -18,7 +24,6 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private Long id;
 
     @Column(nullable = false)
@@ -35,9 +40,9 @@ public class User {
     // @Column(nullable = false)
     // private String password;
 
-    @Column(nullable = false)
-    @ManyToMany(cascade = CascadeType.ALL)
-    private IpAddress ipAddress;
+//    @Column(nullable = false)
+//    @ManyToMany(cascade = CascadeType.ALL)
+//    private IpAddress ipAddress;
 
     @Column(unique = true, nullable = false)
     private Long primaryPhone;
@@ -46,12 +51,15 @@ public class User {
     private boolean isVerified;
 
     @Column(nullable = false)
+    @CreationTimestamp(source = SourceType.DB)
     private Instant createdAt;
 
 //    @OneToOne(cascade = CascadeType.ALL)
 //    @JoinColumn(name = "password_id")
 //    private Password password;
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToOne
+    @JoinColumn(name = "password_id")
+//    @JsonBackReference
     private Password password;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
@@ -60,12 +68,16 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<LoginHistory> loginHistories = new ArrayList<>();
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Order> orders = new ArrayList<>();
 
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToOne
+    @JoinColumn(name = "wishlist_id")
+//    @JsonBackReference
     private Wishlist wishlist;
 
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToOne
+    @JoinColumn(name = "cart_id")
+//    @JsonBackReference
     private Cart cart;
 }
