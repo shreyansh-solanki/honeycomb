@@ -21,12 +21,12 @@ public class UserController {
     }
 
     @GetMapping("/{userId}")
-    public ResponseEntity<UserDTO> getUserById(@PathVariable("userId") Long userId) {
+    public ResponseEntity<UserDTO> getUserById(@PathVariable("userId") String userId) {
         return new ResponseEntity<>(this.userService.getUserById(userId), HttpStatus.OK);
     }
 
     @DeleteMapping("/{userId}")
-    public ResponseEntity<?> deleteUserById(@PathVariable("userId") Long userId) {
+    public ResponseEntity<?> deleteUserById(@PathVariable("userId") String userId) {
         this.userService.delete(userId);
         return ResponseEntity.ok("User Deleted successfully");
     }

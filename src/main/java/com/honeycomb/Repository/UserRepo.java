@@ -3,5 +3,8 @@ package com.honeycomb.Repository;
 import com.honeycomb.Entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UserRepo extends JpaRepository<User, Long> {
+import java.util.Optional;
+
+public interface UserRepo extends JpaRepository<User, String> {
+    Optional<User> findByEmail(String username);
 }

@@ -1,17 +1,13 @@
 package com.honeycomb.Exceptions;
 
 import com.honeycomb.Responses.ApiResponse;
-import org.hibernate.engine.jdbc.spi.SqlExceptionHelper;
+import io.jsonwebtoken.ExpiredJwtException;
+import io.jsonwebtoken.security.SignatureException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.dao.DataIntegrityViolationException;
-
-import java.sql.SQLIntegrityConstraintViolationException;
-import java.util.Arrays;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 //  This annotation indicates that this class provides global exception handling for your REST controllers.
 @RestControllerAdvice
@@ -52,6 +48,22 @@ public class GlobalExceptionHandler {
         ApiResponse response = ApiResponse.builder().message(message).success(true).status(HttpStatus.CONFLICT).build();
 
         return new ResponseEntity<>(response, HttpStatus.CONFLICT);
+    }
+
+    @ExceptionHandler(SignatureException.class)
+    public ResponseEntity<ApiResponse> handleSignatureException(SignatureException ex) {
+        String message = ex.getMessage();
+        ApiResponse response = ApiResponse.builder().message(message).success(false).status(HttpStatus.FORBIDDEN).build();
+
+        return new ResponseEntity<>(response, HttpStatus.FORBIDDEN);
+    }
+
+    @ExceptionHandler(ExpiredJwtException.class)
+    public ResponseEntity<ApiResponse> handleExpiredJwtException(ExpiredJwtException ex) {
+        String message = ex.getMessage();
+        ApiResponse response = ApiResponse.builder().message(message).success(false).status(HttpStatus.FORBIDDEN).build();
+
+        return new ResponseEntity<>(response, HttpStatus.FORBIDDEN);
     }
 
 }

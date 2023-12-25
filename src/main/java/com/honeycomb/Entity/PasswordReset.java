@@ -22,7 +22,6 @@ public class PasswordReset {
 
     private Instant requestTime;
 
-    @OneToOne
-    @JoinColumn(name = "password_id", unique = true)
-    private Password password;
+    @OneToOne(mappedBy = "passwordReset", cascade = CascadeType.ALL, orphanRemoval = true)
+    private User user;
 }

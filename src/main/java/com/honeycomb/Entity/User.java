@@ -1,30 +1,26 @@
 package com.honeycomb.Entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.SourceType;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.Instant;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Entity
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "users")
-public class User {
+public class User implements UserDetails {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
 
     @Column(nullable = false)
     private String fname;
@@ -35,10 +31,8 @@ public class User {
     @Column(unique = true, nullable = false)
     private String email;
 
-    // Use a secure hashing algorithm instead of storing plain password
-    // Consider using a dedicated library like BCryptPasswordEncoder
-    // @Column(nullable = false)
-    // private String password;
+    @Column(nullable = false)
+    private String password;
 
 //    @Column(nullable = false)
 //    @ManyToMany(cascade = CascadeType.ALL)
@@ -53,14 +47,6 @@ public class User {
     @Column(nullable = false)
     @CreationTimestamp(source = SourceType.DB)
     private Instant createdAt;
-
-//    @OneToOne(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "password_id")
-//    private Password password;
-    @OneToOne
-    @JoinColumn(name = "password_id")
-//    @JsonBackReference
-    private Password password;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Address> addresses = new ArrayList<>();
@@ -80,4 +66,48 @@ public class User {
     @JoinColumn(name = "cart_id")
 //    @JsonBackReference
     private Cart cart;
+
+    @OneToOne
+    @JoinColumn(name = "passwordReset_id")
+    private PasswordReset passwordReset;
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+//    @JsonIgnore
+    private Set<Authority> authorities = new HashSet<>();
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return authorities;
+    }
+
+    @Override
+    public String getUsername() {
+        return this.id;
+    }
+
+    @Override
+    public String getPassword() {
+        // Implement this method to return the password for the user
+        return password;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
 }
