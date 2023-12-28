@@ -1,6 +1,7 @@
 package com.honeycomb.Controller;
 
 import com.honeycomb.DTO.ProductDTO;
+import com.honeycomb.Responses.ApiResponse;
 import com.honeycomb.Service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,5 +23,10 @@ public class ProductController {
     @GetMapping("/{productId}")
     public ResponseEntity<ProductDTO> getProductById(@PathVariable("productId") String productId) {
         return new ResponseEntity<>(this.productService.getProductById(productId), HttpStatus.OK);
+    }
+
+    @DeleteMapping("{productId}")
+    public ResponseEntity<ApiResponse> deleteProductById(@PathVariable("productId") String productId) {
+        return new ResponseEntity<>(this.productService.deleteProductById(productId), HttpStatus.OK);
     }
 }

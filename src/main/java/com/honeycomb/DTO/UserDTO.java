@@ -3,6 +3,7 @@ package com.honeycomb.DTO;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.honeycomb.Entity.Authority;
+import com.honeycomb.Responses.ApiResponse;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -50,6 +51,8 @@ public class UserDTO {
     private CartDTO cart;
 
     private PasswordResetDTO passwordReset;
+
+    private ApiResponse response;
 
     // Getters, setters, and other essential methods
 }

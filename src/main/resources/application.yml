@@ -6,6 +6,9 @@ spring:
     mongodb:
       uri: mongodb://localhost:27017
       database: hcomb
+    redis:
+      host: localhost
+      port: 6379
   datasource:
     url: jdbc:postgresql://localhost:5432/hcomb
     username: postgres

@@ -2,6 +2,7 @@ package com.honeycomb.Service;
 
 
 import com.honeycomb.DTO.UserDTO;
+import com.honeycomb.Responses.ApiResponse;
 
 public interface UserService {
 
@@ -9,5 +10,5 @@ public interface UserService {
     UserDTO getUserById(String userId);
     UserDTO getUserByEmail(String email);
     UserDTO update(UserDTO userDTO, String userId);
-    void delete(String userId);
+    ApiResponse delete(String userId);
 }

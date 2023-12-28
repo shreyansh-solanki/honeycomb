@@ -24,7 +24,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(ResourceNotFoundException.class)
     public ResponseEntity<ApiResponse> handlerResourceNotFoundException(ResourceNotFoundException ex) {
         String message = ex.getMessage();
-        ApiResponse response = ApiResponse.builder().message(message).success(true).status(HttpStatus.NOT_FOUND).build();
+        ApiResponse response = ApiResponse.builder().message(message).success(false).status(HttpStatus.NOT_FOUND).build();
 
         return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
     }
@@ -32,7 +32,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(ApiException.class)
     public ResponseEntity<ApiResponse> handleApiException(ApiException exception) {
         String message = exception.getMessage();
-        ApiResponse response = ApiResponse.builder().message(message).success(true).status(HttpStatus.BAD_REQUEST).build();
+        ApiResponse response = ApiResponse.builder().message(message).success(false).status(HttpStatus.BAD_REQUEST).build();
 
         return new ResponseEntity<ApiResponse>(response, HttpStatus.BAD_REQUEST);
     }
@@ -45,7 +45,7 @@ public class GlobalExceptionHandler {
             message += rootCause.getMessage();
         }
 
-        ApiResponse response = ApiResponse.builder().message(message).success(true).status(HttpStatus.CONFLICT).build();
+        ApiResponse response = ApiResponse.builder().message(message).success(false).status(HttpStatus.CONFLICT).build();
 
         return new ResponseEntity<>(response, HttpStatus.CONFLICT);
     }

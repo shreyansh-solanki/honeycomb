@@ -1,7 +1,8 @@
 package com.honeycomb.Controller;
 
 import com.honeycomb.DTO.UserDTO;
-import com.honeycomb.Service.Impl.UserServiceImpl;
+import com.honeycomb.Responses.ApiResponse;
+import com.honeycomb.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
 
     @Autowired
-    private UserServiceImpl userService;
+    private UserService userService;
 
     @PostMapping()
     public ResponseEntity<UserDTO> register(@RequestBody UserDTO userDTO) {
@@ -31,9 +32,8 @@ public class UserController {
     }
 
     @DeleteMapping("/{userId}")
-    public ResponseEntity<?> deleteUserById(@PathVariable("userId") String userId) {
-        this.userService.delete(userId);
-        return ResponseEntity.ok("User Deleted successfully");
+    public ResponseEntity<ApiResponse> deleteUserById(@PathVariable("userId") String userId) {
+        return new ResponseEntity<>(this.userService.delete(userId), HttpStatus.OK);
     }
 
     @GetMapping("/username")

@@ -2,6 +2,7 @@ package com.honeycomb.DTO;
 
 import com.honeycomb.Entity.ProductCategory;
 import com.honeycomb.Entity.WishlistItem;
+import com.honeycomb.Responses.ApiResponse;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -33,4 +34,6 @@ public class ProductDTO {
     private Map<String, String> attributes;
 
     private Instant dateAdded;
+
+    private ApiResponse response;
 }
