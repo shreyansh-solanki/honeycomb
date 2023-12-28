@@ -7,26 +7,23 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.Instant;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Document("product_categories")
-public class ProductCategory {
+@Document("product_pricing_histories")
+public class ProductPricingHistory {
 
     @Id
     private String id;
 
-    private String name;
+    private String productId;
 
-    private String description;
+    private Double oldPrice;
 
-    private Integer code;
+    private Double newPrice;
 
-    private Map<String, String> attributes;
+    private Instant changeDate;
 
-    private Instant dateCreated;
+    private String changeReason;
 }

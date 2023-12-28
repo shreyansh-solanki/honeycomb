@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 @Entity
 @Data
@@ -20,9 +21,8 @@ public class CartItem {
     @JoinColumn(name = "cart_id")
     private Cart cart;
 
-    @ManyToOne
-    @JoinColumn(name = "product_id")
-    private Product product;
+    @Field("product_id")
+    private String productId;
 
     private Integer quantity;
 

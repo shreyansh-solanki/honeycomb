@@ -11,21 +11,16 @@ import java.time.Instant;
 @Getter
 @Setter
 public class PricingHistoryDTO {
-    @Id
-    private Long id;
 
-    @JsonIgnore
-    private Product product;
+    private String id;
+
+    private String productId;
 
     private Double oldPrice;
 
     private Double newPrice;
 
-    private Double oldDiscount;
+    private Instant changeDate;
 
-    private Double newDiscount;
-
-    private Instant startPriceDateTime;
-
-    private Instant endPriceDateTime;
+    private String changeReason;
 }

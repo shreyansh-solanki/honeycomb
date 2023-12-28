@@ -3,6 +3,7 @@ package com.honeycomb.Service.Impl;
 import com.honeycomb.DTO.AuthRequest;
 import com.honeycomb.DTO.UserDTO;
 import com.honeycomb.Exceptions.ApiException;
+import com.honeycomb.Exceptions.ExceptionConstants;
 import com.honeycomb.Responses.AuthResponse;
 import com.honeycomb.Service.AuthenticationService;
 import com.honeycomb.Service.UserService;
@@ -42,6 +43,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
         AuthResponse authResponse = new AuthResponse();
         authResponse.setToken(token);
+        authResponse.setTokenType("Bearer");
         authResponse.setRefreshToken(refreshToken);
 
         return authResponse;
@@ -53,7 +55,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         try {
             this.authenticationManager.authenticate(authenticationToken);
         } catch (AuthenticationException ex) {
-            throw new ApiException("Invalid email or password !!");
+            throw new ApiException(ExceptionConstants.INVALID_EMAIL_PASSWORD);
         }
     }
 }

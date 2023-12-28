@@ -25,6 +25,11 @@ public class UserController {
         return new ResponseEntity<>(this.userService.getUserById(userId), HttpStatus.OK);
     }
 
+    @PutMapping("/{userId}")
+    public ResponseEntity<UserDTO> updateUserById(@PathVariable("userId") String userId ,@RequestBody UserDTO userDTO) {
+        return new ResponseEntity<>(this.userService.update(userDTO, userId), HttpStatus.OK);
+    }
+
     @DeleteMapping("/{userId}")
     public ResponseEntity<?> deleteUserById(@PathVariable("userId") String userId) {
         this.userService.delete(userId);
