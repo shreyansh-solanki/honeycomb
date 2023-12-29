@@ -34,6 +34,8 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     public AuthResponse login(AuthRequest authRequest) {
         UserDTO userDTO = this.userService.getUserByEmail(authRequest.getEmail());
 
+        checkPasswordResetRequest(userDTO);
+
         this.authenticate(userDTO.getId(), authRequest.getPassword());
 
         UserDetails userDetails = this.userDetailsService.loadUserByUsername(userDTO.getId());
@@ -56,6 +58,12 @@ public class AuthenticationServiceImpl implements AuthenticationService {
             this.authenticationManager.authenticate(authenticationToken);
         } catch (AuthenticationException ex) {
             throw new ApiException(ExceptionConstants.INVALID_EMAIL_PASSWORD);
+        }
+    }
+
+    private void checkPasswordResetRequest(UserDTO userDTO) {
+        if(userDTO.getPasswordReset() != null) {
+            throw new ApiException(ExceptionConstants.PASSWORD_RESET_PROGRESS);
         }
     }
 }

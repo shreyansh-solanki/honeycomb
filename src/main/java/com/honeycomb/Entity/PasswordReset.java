@@ -15,8 +15,7 @@ import java.time.Instant;
 public class PasswordReset {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
 
     private String resetToken;
 

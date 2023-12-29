@@ -10,7 +10,7 @@ import java.time.Instant;
 @Setter
 public class PasswordResetDTO {
 
-    private Long id;
+    private String id;
 
     private String resetToken;
 

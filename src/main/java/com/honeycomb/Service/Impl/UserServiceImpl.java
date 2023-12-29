@@ -10,10 +10,7 @@ import com.honeycomb.Exceptions.ResourceNotFoundException;
 import com.honeycomb.Repository.UserRepo;
 import com.honeycomb.Responses.ApiConstants;
 import com.honeycomb.Responses.ApiResponse;
-import com.honeycomb.Service.AuthorityService;
-import com.honeycomb.Service.CartService;
-import com.honeycomb.Service.UserService;
-import com.honeycomb.Service.WishlistService;
+import com.honeycomb.Service.*;
 import com.honeycomb.Util.CustomPasswordEncoder;
 import com.honeycomb.Util.UlidGenerator;
 import org.modelmapper.ModelMapper;
@@ -123,6 +120,23 @@ public class UserServiceImpl implements UserService {
         this.userRepo.deleteById(userId);
 
         return new ApiResponse(ApiConstants.USER_DELETED, ApiConstants.API_SUCCESS_TRUE, HttpStatus.OK);
+    }
+
+    @Override
+    public void save(UserDTO userDTO) {
+        this.userRepo.save(this.modelMapper.map(userDTO, User.class));
+    }
+
+    @Override
+    public ApiResponse changePassword(String userId, String password) {
+        User user = this.userRepo.findById(userId).orElseThrow(() -> new ResourceNotFoundException(ExceptionConstants.USER_NOT_FOUND + userId));
+
+        user.setPassword(this.customPasswordEncoder.getPasswordEncoder().encode(password));
+        user.setPasswordReset(null);
+
+        this.userRepo.save(user);
+
+        return new ApiResponse(ApiConstants.PASSWORD_CHANGE, ApiConstants.API_SUCCESS_TRUE, HttpStatus.OK);
     }
 
 }

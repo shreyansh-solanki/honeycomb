@@ -2,6 +2,8 @@ package com.honeycomb.Controller;
 
 import com.honeycomb.DTO.UserDTO;
 import com.honeycomb.Responses.ApiResponse;
+import com.honeycomb.Responses.PasswordResponse;
+import com.honeycomb.Service.PasswordResetService;
 import com.honeycomb.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -34,6 +36,11 @@ public class UserController {
     @DeleteMapping("/{userId}")
     public ResponseEntity<ApiResponse> deleteUserById(@PathVariable("userId") String userId) {
         return new ResponseEntity<>(this.userService.delete(userId), HttpStatus.OK);
+    }
+
+    @PostMapping("/{userId}/password")
+    public ResponseEntity<ApiResponse> changePassword(@PathVariable("userId") String userId, @RequestBody PasswordResponse passwordResponse) {
+        return new ResponseEntity<>(this.userService.changePassword(userId, passwordResponse.getNewPassword()), HttpStatus.OK);
     }
 
     @GetMapping("/username")

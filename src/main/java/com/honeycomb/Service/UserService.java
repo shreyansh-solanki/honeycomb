@@ -11,4 +11,7 @@ public interface UserService {
     UserDTO getUserByEmail(String email);
     UserDTO update(UserDTO userDTO, String userId);
     ApiResponse delete(String userId);
+
+    void save(UserDTO userDTO);
+    ApiResponse changePassword(String userId, String password);
 }

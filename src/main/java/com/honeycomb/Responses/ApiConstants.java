@@ -11,5 +11,9 @@ public class ApiConstants {
     public static final String PRODUCT_CREATED = "Product created successfully.";
     public static final String PRODUCT_DELETED = "Product deleted successfully.";
     public static final String PRODUCT_FOUND = "Product found.";
+    public static final String PASSWORD_CHANGE = "Password changes successfully.";
+    public static final String PASSWORD_RESET = "Password reset initiated.";
+    public static final String INVALID_TOKEN = "Invalid token.";
+    public static final String PASSWORD_RESET_SUCCESS = "Password reset successfully.";
 
 }
