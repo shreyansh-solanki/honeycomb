@@ -18,6 +18,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
+
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -131,7 +133,12 @@ public class UserServiceImpl implements UserService {
     public ApiResponse changePassword(String userId, String password) {
         User user = this.userRepo.findById(userId).orElseThrow(() -> new ResourceNotFoundException(ExceptionConstants.USER_NOT_FOUND + userId));
 
+        if(user.getPasswordChangeDate() != null && user.getPasswordChangeDate().plusSeconds(24 * 60 * 60).isAfter(Instant.now())) {
+            throw new ApiException(ExceptionConstants.PASSWORD_WITHIN_DAY + user.getPasswordChangeDate());
+        }
+
         user.setPassword(this.customPasswordEncoder.getPasswordEncoder().encode(password));
+        user.setPasswordChangeDate(Instant.now());
         user.setPasswordReset(null);
 
         this.userRepo.save(user);

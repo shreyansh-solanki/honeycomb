@@ -34,6 +34,8 @@ public class User implements UserDetails {
     @Column(nullable = false)
     private String password;
 
+    private Instant passwordChangeDate;
+
 //    @Column(nullable = false)
 //    @ManyToMany(cascade = CascadeType.ALL)
 //    private IpAddress ipAddress;

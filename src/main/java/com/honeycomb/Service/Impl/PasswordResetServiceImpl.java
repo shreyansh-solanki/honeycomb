@@ -76,13 +76,13 @@ public class PasswordResetServiceImpl implements PasswordResetService {
 
 
     public void checkResetTokenRequestTime(Instant tokenTime) {
-        if(tokenTime.isBefore(Instant.now().plusSeconds(24 * 60 * 60 * 60))) {
+        if(tokenTime.plusSeconds(24 * 60 * 60).isAfter(Instant.now())) {
             throw new ApiException(ExceptionConstants.TOKEN_BEFORE_TIME + " Token initiated at : " + tokenTime);
         }
     }
 
     public void checkResetTokenValidity(Instant tokenValidity) {
-        if(tokenValidity.isAfter(Instant.now().plusSeconds(24 * 60 * 60 * 60))) {
+        if(tokenValidity.plusSeconds(24 * 60 * 60).isBefore(Instant.now())) {
             throw new ApiException(ExceptionConstants.TOKEN_EXPIRED);
         }
     }

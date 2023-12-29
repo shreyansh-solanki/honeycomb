@@ -10,4 +10,5 @@ public class ExceptionConstants {
     public static final String TOKEN_EXPIRED = "Token expired. Please initiate new password request";
     public static final String TOKEN_BEFORE_TIME = "Token already initiated. Please try after sometime.";
     public static final String PASSWORD_RESET_PROGRESS = "Password reset request initiated. Please reset the password first.";
+    public static final String PASSWORD_WITHIN_DAY = "Password only changes one time in 24 hours. Password change initiated at : ";
 }
