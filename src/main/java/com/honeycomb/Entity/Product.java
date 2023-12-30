@@ -4,40 +4,37 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
-@Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "products")
+@Document("products")
 public class Product {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
 
     private String name;
 
     private String description;
 
+    private String categoryId;
+
     private Integer code;
 
     private Double price;
 
-    private Double discount;
+    private Integer stockQuantity;
 
-    private Integer stock;
+    private List<String> images;
 
-    @ManyToOne
-    @JoinColumn(name = "category_id")
-    private ProductCategory category;
+    private Map<String, String> attributes;
 
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
-    private List<PricingHistory> pricingHistories = new ArrayList<>();
-
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
-    private List<WishlistItem> wishlistItems = new ArrayList<>();
+    private Instant dateAdded;
 }

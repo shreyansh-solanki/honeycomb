@@ -1,14 +1,19 @@
 package com.honeycomb.DTO;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.Set;
+import java.util.List;
 
 @Getter
 @Setter
 public class CartDTO {
 
     private String id;
-    private Set<String> cartItems;
+
+    @JsonIgnore
+    private UserDTO user;
+
+    private List<CartItemDTO> cartItems;
 }

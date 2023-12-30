@@ -1,5 +1,6 @@
 package com.honeycomb.DTO;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,11 +10,12 @@ import java.time.Instant;
 @Setter
 public class PasswordResetDTO {
 
-    private Long id;
+    private String id;
 
     private String resetToken;
 
     private Instant requestTime;
 
-    private PasswordDTO password;
+    @JsonIgnore
+    private UserDTO user;
 }

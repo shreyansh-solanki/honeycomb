@@ -4,16 +4,14 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.Instant;
+import java.util.List;
 
 @Getter
 @Setter
-public class PasswordHistoryDTO {
-
+public class OrderStatusTimeDTO {
     private Long id;
 
-    private String hashedPassword;
+    private Instant orderStatusAt;
 
-    private Instant changeDate;
-
-    private PasswordDTO password;
+    private List<OrderStatusDTO> orderStatuses;
 }

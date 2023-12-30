@@ -1,16 +1,21 @@
 package com.honeycomb.DTO;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.honeycomb.Entity.Authority;
+import com.honeycomb.Responses.ApiResponse;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.time.Instant;
 import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
 public class UserDTO {
 
-    private Long id;
+    private String id;
 
     private String fname;
 
@@ -20,13 +25,36 @@ public class UserDTO {
 
     private Long primaryPhone;
 
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private String password;
+
+    private Instant passwordChangeDate;
+
     private boolean isVerified;
 
     private Instant createdAt;
 
-    private PasswordDTO password;
+//    @JsonIgnore
+    private Set<AuthorityDTO> authorities;
 
+//    @JsonIgnore
+    private List<AddressDTO> addresses;
+
+//    @JsonIgnore
     private List<LoginHistoryDTO> loginHistories;
+
+//    @JsonIgnore
+    private List<OrderDTO> orders;
+
+//    @JsonIgnore
+    private WishlistDTO wishlist;
+
+//    @JsonIgnore
+    private CartDTO cart;
+
+    private PasswordResetDTO passwordReset;
+
+    private ApiResponse response;
 
     // Getters, setters, and other essential methods
 }

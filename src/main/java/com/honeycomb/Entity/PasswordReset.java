@@ -15,14 +15,12 @@ import java.time.Instant;
 public class PasswordReset {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
 
     private String resetToken;
 
     private Instant requestTime;
 
-    @OneToOne
-    @JoinColumn(name = "password_id", unique = true)
-    private Password password;
+    @OneToOne(mappedBy = "passwordReset", cascade = CascadeType.ALL, orphanRemoval = true)
+    private User user;
 }
