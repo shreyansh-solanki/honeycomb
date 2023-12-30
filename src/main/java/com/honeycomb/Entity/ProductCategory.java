@@ -1,5 +1,6 @@
 package com.honeycomb.Entity;
 
+import com.honeycomb.Responses.ApiResponse;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;

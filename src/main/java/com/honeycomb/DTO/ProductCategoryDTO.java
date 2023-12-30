@@ -1,5 +1,6 @@
 package com.honeycomb.DTO;
 
+import com.honeycomb.Responses.ApiResponse;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -22,4 +23,6 @@ public class ProductCategoryDTO {
     private Map<String, String> attributes;
 
     private Instant dateCreated;
+
+    private ApiResponse response;
 }
